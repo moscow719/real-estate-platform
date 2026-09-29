@@ -2,5 +2,35 @@
   "Home": {
     "title": "منصة العقارات",
     "subtitle": "اعثر على منزل أحلامك"
+  },
+  "Auth": {
+    "loginTitle": "تسجيل الدخول",
+    "loginDescription": "أدخل بريدك الإلكتروني وكلمة المرور للمتابعة",
+    "registerTitle": "إنشاء حساب",
+    "registerDescription": "سجّل حسابك الجديد في دقيقة",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "loginButton": "دخول",
+    "registerButton": "إنشاء الحساب",
+    "loading": "جارٍ التحميل...",
+    "noAccount": "ليس لديك حساب؟",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "goRegister": "سجّل الآن",
+    "goLogin": "سجّل الدخول",
+    "errors": {
+      "name_min": "الاسم يجب ألا يقل عن حرفين",
+      "name_max": "الاسم طويل جدًا",
+      "email_invalid": "البريد الإلكتروني غير صالح",
+      "password_min": "كلمة المرور يجب ألا تقل عن 8 أحرف",
+      "password_max": "كلمة المرور طويلة جدًا",
+      "password_mismatch": "كلمتا المرور غير متطابقتين",
+      "password_required": "أدخل كلمة المرور",
+      "email_taken": "هذا البريد الإلكتروني مسجّل بالفعل",
+      "invalid_credentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
+      "server_error": "حدث خطأ، حاول مرة أخرى",
+      "invalid": "بيانات غير صالحة"
+    }
   }
 }
