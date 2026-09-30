@@ -15,7 +15,61 @@
     "title": "Real Estate Platform",
     "subtitle": "Find your dream home",
     "latestTitle": "Latest properties",
-    "viewAll": "View all properties"
+    "viewAll": "View all properties",
+    "badge": "Dream • Search • Own",
+    "heroTitle1": "Discover spaces",
+    "heroTitle2": "that feel like home",
+    "heroSubtitle": "Handpicked properties for sale and rent in the finest locations, matched to your lifestyle and budget.",
+    "searchLocation": "Location",
+    "searchType": "Property type",
+    "searchPrice": "Price",
+    "searchAny": "Any",
+    "searchButton": "Search",
+    "features": {
+      "verified": "Verified properties",
+      "verifiedText": "All properties are verified for your peace of mind",
+      "secure": "Safe & secure",
+      "secureText": "Your safety is our priority in every transaction",
+      "support": "24/7 support",
+      "supportText": "Our team is here to help you anytime, anywhere",
+      "price": "Best price guarantee",
+      "priceText": "We make sure you get the best deals on the market"
+    },
+    "why": {
+      "badge": "Why choose us",
+      "title": "More than just a property",
+      "text": "We offer more than just spaces. We deliver experiences that fit your life and future.",
+      "p1": "Wide range of premium properties",
+      "p2": "Flexible terms and easy agreements",
+      "p3": "Personalized recommendations",
+      "p4": "Trusted by thousands of clients",
+      "button": "Learn more"
+    },
+    "steps": {
+      "badge": "How it works",
+      "title": "Find your dream home in 3 easy steps",
+      "s1Title": "Search & explore",
+      "s1Text": "Browse thousands of verified listings in your desired location.",
+      "s2Title": "Choose your property",
+      "s2Text": "Compare options and find the perfect space for your lifestyle.",
+      "s3Title": "Move in & enjoy",
+      "s3Text": "Complete the process and start your new journey with confidence."
+    },
+    "testimonials": {
+      "title": "What our clients say",
+      "demo": "Demo testimonials for showcase purposes only",
+      "t1Name": "Sarah Johnson",
+      "t1Text": "The platform made finding my dream home so easy. The process was smooth and professional.",
+      "t2Name": "David Miller",
+      "t2Text": "Amazing service and verified listings. I found the perfect apartment in just a few days.",
+      "t3Name": "Emily Carter",
+      "t3Text": "A trusted platform with real value. Highly recommended for anyone looking for a new home."
+    },
+    "cta": {
+      "title": "Ready to find your dream home?",
+      "text": "Join thousands of families who found their perfect space with us.",
+      "button": "Get started"
+    }
   },
   "Properties": {
     "title": "Properties",

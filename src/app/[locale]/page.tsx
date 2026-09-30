@@ -1,6 +1,12 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PropertyCard } from "@/components/property/property-card";
+import { Hero } from "@/components/home/hero";
+import { Features } from "@/components/home/features";
+import { WhyUs } from "@/components/home/why-us";
+import { HowItWorks } from "@/components/home/how-it-works";
+import { Testimonials } from "@/components/home/testimonials";
+import { CtaBanner } from "@/components/home/cta-banner";
 import { getLatestProperties } from "@/lib/properties";
 
 export default async function HomePage() {
@@ -9,16 +15,9 @@ export default async function HomePage() {
 
   return (
     <main>
-      <section className="bg-muted/40 px-4 py-20 text-center">
-        <h1 className="text-4xl font-bold md:text-5xl">{t("title")}</h1>
-        <p className="mt-4 text-lg text-muted-foreground">{t("subtitle")}</p>
-        <Link
-          href="/properties"
-          className="mt-8 inline-block rounded-md bg-primary px-6 py-3 text-primary-foreground hover:opacity-90"
-        >
-          {t("viewAll")}
-        </Link>
-      </section>
+      <Hero />
+      <Features />
+      <WhyUs />
 
       <section className="mx-auto max-w-7xl px-4 py-12">
         <div className="mb-6 flex items-center justify-between">
@@ -32,15 +31,15 @@ export default async function HomePage() {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {latest.map((property, index) => (
-            <PropertyCard
-              key={property.id}
-              property={property}
-              eager={index < 3}
-            />
+          {latest.map((property) => (
+            <PropertyCard key={property.id} property={property} />
           ))}
         </div>
       </section>
+
+      <HowItWorks />
+      <Testimonials />
+      <CtaBanner />
     </main>
   );
 }
