@@ -1,7 +1,56 @@
 {
+  "Nav": {
+    "home": "الرئيسية",
+    "properties": "العقارات",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "logout": "تسجيل الخروج",
+    "switchLanguage": "English"
+  },
+  "Footer": {
+    "tagline": "منصة عقارات للبيع والإيجار في أرقى المناطق",
+    "demo": "جميع العقارات والبيانات المعروضة تجريبية لأغراض العرض فقط"
+  },
   "Home": {
     "title": "منصة العقارات",
-    "subtitle": "اعثر على منزل أحلامك"
+    "subtitle": "اعثر على منزل أحلامك",
+    "latestTitle": "أحدث العقارات",
+    "viewAll": "عرض كل العقارات"
+  },
+  "Properties": {
+    "title": "العقارات",
+    "results": "{count} عقار",
+    "empty": "لا توجد عقارات حاليًا",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageOf": "صفحة {page} من {total}"
+  },
+  "Property": {
+    "types": {
+      "APARTMENT": "شقة",
+      "VILLA": "فيلا",
+      "CHALET": "شاليه",
+      "OFFICE": "مكتب",
+      "LAND": "أرض"
+    },
+    "purposes": {
+      "SALE": "للبيع",
+      "RENT": "للإيجار"
+    },
+    "perMonth": "/ شهريًا",
+    "bedrooms": "غرف نوم",
+    "bathrooms": "حمامات",
+    "area": "المساحة",
+    "sqm": "م²",
+    "description": "الوصف",
+    "amenities": "المميزات",
+    "location": "الموقع",
+    "listedBy": "المعروض بواسطة",
+    "backToList": "العودة للعقارات",
+    "details": "تفاصيل العقار",
+    "type": "النوع",
+    "purpose": "الغرض",
+    "noImage": "لا توجد صورة"
   },
   "Auth": {
     "loginTitle": "تسجيل الدخول",

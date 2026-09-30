@@ -1,7 +1,56 @@
 {
+  "Nav": {
+    "home": "Home",
+    "properties": "Properties",
+    "login": "Sign in",
+    "register": "Sign up",
+    "logout": "Sign out",
+    "switchLanguage": "العربية"
+  },
+  "Footer": {
+    "tagline": "Properties for sale and rent in the finest locations",
+    "demo": "All listings and data shown are demo content for showcase purposes only"
+  },
   "Home": {
     "title": "Real Estate Platform",
-    "subtitle": "Find your dream home"
+    "subtitle": "Find your dream home",
+    "latestTitle": "Latest properties",
+    "viewAll": "View all properties"
+  },
+  "Properties": {
+    "title": "Properties",
+    "results": "{count} properties",
+    "empty": "No properties available yet",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {page} of {total}"
+  },
+  "Property": {
+    "types": {
+      "APARTMENT": "Apartment",
+      "VILLA": "Villa",
+      "CHALET": "Chalet",
+      "OFFICE": "Office",
+      "LAND": "Land"
+    },
+    "purposes": {
+      "SALE": "For sale",
+      "RENT": "For rent"
+    },
+    "perMonth": "/ month",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "area": "Area",
+    "sqm": "m²",
+    "description": "Description",
+    "amenities": "Amenities",
+    "location": "Location",
+    "listedBy": "Listed by",
+    "backToList": "Back to properties",
+    "details": "Property details",
+    "type": "Type",
+    "purpose": "Purpose",
+    "noImage": "No image"
   },
   "Auth": {
     "loginTitle": "Sign in",
