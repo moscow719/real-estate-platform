@@ -1,17 +1,36 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { PropertyCard } from "@/components/property/property-card";
-import { getProperties } from "@/lib/properties";
+import { SearchFilters } from "@/components/search/search-filters";
+import { getCities, getProperties } from "@/lib/properties";
+import { parseSearchParams } from "@/schemas/search.schema";
+
+type RawParams = Record<string, string | string[] | undefined>;
+
+// بيبني رابط الصفحة المطلوبة مع الحفاظ على الفلاتر الحالية
+function pageHref(filters: Record<string, unknown>, page: number) {
+  const params = new URLSearchParams();
+  for (const [key, value] of Object.entries(filters)) {
+    if (key === "page" || value === undefined || value === "") continue;
+    params.set(key, String(value));
+  }
+  params.set("page", String(page));
+  return `/properties?${params.toString()}`;
+}
 
 export default async function PropertiesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ page?: string }>;
+  searchParams: Promise<RawParams>;
 }) {
-  const { page } = await searchParams;
+  const filters = parseSearchParams(await searchParams);
   const t = await getTranslations("Properties");
-  const { items, total, page: current, totalPages } = await getProperties(
-    Number(page)
+
+  const [{ items, total, page: current, totalPages }, cities] =
+    await Promise.all([getProperties(filters), getCities()]);
+
+  const hasFilters = Object.entries(filters).some(
+    ([key, value]) => key !== "page" && value !== undefined
   );
 
   return (
@@ -23,8 +42,19 @@ export default async function PropertiesPage({
         </p>
       </div>
 
+      <SearchFilters filters={filters} cities={cities} />
+
       {items.length === 0 ? (
-        <p className="py-20 text-center text-muted-foreground">{t("empty")}</p>
+        <div className="py-20 text-center">
+          <p className="text-lg font-medium">
+            {hasFilters ? t("noResults") : t("empty")}
+          </p>
+          {hasFilters && (
+            <p className="mt-2 text-sm text-muted-foreground">
+              {t("noResultsHint")}
+            </p>
+          )}
+        </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((property, index) => (
@@ -41,7 +71,7 @@ export default async function PropertiesPage({
         <nav className="mt-10 flex items-center justify-center gap-4">
           {current > 1 ? (
             <Link
-              href={`/properties?page=${current - 1}`}
+              href={pageHref(filters, current - 1)}
               className="rounded-md border px-4 py-2 text-sm hover:bg-muted"
             >
               {t("previous")}
@@ -58,7 +88,7 @@ export default async function PropertiesPage({
 
           {current < totalPages ? (
             <Link
-              href={`/properties?page=${current + 1}`}
+              href={pageHref(filters, current + 1)}
               className="rounded-md border px-4 py-2 text-sm hover:bg-muted"
             >
               {t("next")}

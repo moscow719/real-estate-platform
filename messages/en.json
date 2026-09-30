@@ -75,9 +75,24 @@
     "title": "Properties",
     "results": "{count} properties",
     "empty": "No properties available yet",
+    "noResults": "No properties match your search",
+    "noResultsHint": "Try changing or clearing the filters to see all properties.",
     "previous": "Previous",
     "next": "Next",
-    "pageOf": "Page {page} of {total}"
+    "pageOf": "Page {page} of {total}",
+    "filters": {
+      "city": "City or compound",
+      "cityPlaceholder": "e.g. New Cairo, Palm Hills",
+      "type": "Property type",
+      "purpose": "Purpose",
+      "any": "Any",
+      "minPrice": "Min price",
+      "maxPrice": "Max price",
+      "bedrooms": "Bedrooms",
+      "bedroomsAtLeast": "{count}+",
+      "apply": "Search",
+      "reset": "Clear filters"
+    }
   },
   "Property": {
     "types": {

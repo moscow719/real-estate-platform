@@ -75,9 +75,24 @@
     "title": "العقارات",
     "results": "{count} عقار",
     "empty": "لا توجد عقارات حاليًا",
+    "noResults": "لا توجد عقارات تطابق بحثك",
+    "noResultsHint": "جرّب تغيير الفلاتر أو مسحها للاطلاع على كل العقارات.",
     "previous": "السابق",
     "next": "التالي",
-    "pageOf": "صفحة {page} من {total}"
+    "pageOf": "صفحة {page} من {total}",
+    "filters": {
+      "city": "المدينة أو الكمبوند",
+      "cityPlaceholder": "مثال: التجمع، بالم هيلز",
+      "type": "نوع العقار",
+      "purpose": "الغرض",
+      "any": "الكل",
+      "minPrice": "أقل سعر",
+      "maxPrice": "أعلى سعر",
+      "bedrooms": "غرف النوم",
+      "bedroomsAtLeast": "{count}+",
+      "apply": "بحث",
+      "reset": "مسح الفلاتر"
+    }
   },
   "Property": {
     "types": {
