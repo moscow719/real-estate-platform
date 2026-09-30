@@ -25,11 +25,15 @@
 - على Vercel (Production): DATABASE_URL + AUTH_SECRET (قيمة مختلفة عن المحلي).
 - ملفات AI agents (.claude, .cursor...) في .gitignore.
 - لو `tsc --noEmit` طلّع أخطاء في `.next/...validator.ts` يبقى كاش قديم أو السيرفر شغال:
-  امسح `.next` وأعد الفحص.
+  امسح `.next` وأعد الفحص. (مسح `.next` بيخلي أول تشغيل بطيء، فمتمسحهوش إلا للضرورة.)
 - الصور التجريبية للعقارات من picsum.photos (مؤقتة، عشوائية). المسموح في next.config.ts:
   picsum.photos, fastly.picsum.photos, res.cloudinary.com.
 - الـ Seed: `npx tsx prisma/seed.ts` (50 عقار، 10 ملاك @demo.local، يعيد التشغيل بأمان).
 - الأرقام والأسعار بتظهر بالإنجليزي (1,000) حتى في العربي (src/lib/format.ts).
+- الفلترة في `getProperties(filters)` بتبحث في city و address (insensitive)،
+  والسعر بيتقارن بالرقم سواء بيع أو إيجار.
+- الفلاتر بتتعمل بفورم GET عادي (من غير JS على المتصفح)، والترقيم بيحافظ عليها
+  (`pageHref` في properties/page.tsx).
 
 ## الهيكل الحالي
 ```
@@ -46,10 +50,11 @@ src/
     home/hero, features, why-us, how-it-works, testimonials, cta-banner
     layout/navbar, footer, language-switcher
     property/property-card, property-gallery
+    search/search-filters
     ui/button, card, input, label
   i18n/routing.ts, request.ts, navigation.ts
   lib/prisma.ts, properties.ts, format.ts, utils.ts
-  schemas/auth.schema.ts
+  schemas/auth.schema.ts, search.schema.ts
   types/next-auth.d.ts
   auth.ts, proxy.ts
 public/images/hero.jpg, why-us.jpg, cta.jpg
@@ -73,9 +78,11 @@ bedrooms/bathrooms اختياريين، indexes. Migration المطبقة: `2026
 - [x] Login / Register شغالين (تجربة كاملة محلياً)
 - [x] Seed: 50 عقار بمناطق فاخرة
 - [x] Phase 1: الرئيسية (بتصميم Nestoria)، قائمة العقارات بترقيم، تفاصيل العقار بمعرض صور، Navbar/Footer
+- [x] Phase 3: بحث وفلترة بـ URL params (city, type, purpose, minPrice, maxPrice, bedrooms, page).
+      الـ Hero بيبعت لنفس الفلاتر. Zod بينضّف المعاملات (src/schemas/search.schema.ts)
+      والقيم الغلط بتتجاهل. منشور ومجرَّب على Vercel.
 - [ ] Phase 1 (باقي): Skeleton loaders، 404 مخصصة، صفحة خطأ
 - [ ] Phase 2: CRUD + Zod + Cloudinary + Authorization + Status workflow (صفحة /dashboard لسه مش موجودة)
-- [ ] Phase 3: بحث وفلترة بـ URL params (شريط البحث في الـ Hero شكله جاهز بس مش بيفلتر)
 - [ ] Phase 4: خريطة Leaflet
 - [ ] Phase 5: مفضلة + Dashboard + مشاهدات + Inquiry (اتصل بالمالك)
 - [ ] Phase 6: SEO + حاسبة قسط + مقارنة
