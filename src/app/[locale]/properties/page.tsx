@@ -1,7 +1,9 @@
 import { getTranslations } from "next-intl/server";
+import { auth } from "@/auth";
 import { Link } from "@/i18n/navigation";
 import { PropertyCard } from "@/components/property/property-card";
 import { SearchFilters } from "@/components/search/search-filters";
+import { getFavoriteIds } from "@/lib/favorites";
 import { getCities, getProperties } from "@/lib/properties";
 import { parseSearchParams } from "@/schemas/search.schema";
 
@@ -25,9 +27,16 @@ export default async function PropertiesPage({
 }) {
   const filters = parseSearchParams(await searchParams);
   const t = await getTranslations("Properties");
+  const session = await auth();
+  const userId = session?.user?.id;
 
   const [{ items, total, page: current, totalPages }, cities] =
     await Promise.all([getProperties(filters), getCities()]);
+
+  const favoriteIds = await getFavoriteIds(
+    userId,
+    items.map((p) => p.id)
+  );
 
   const hasFilters = Object.entries(filters).some(
     ([key, value]) => key !== "page" && value !== undefined
@@ -62,6 +71,8 @@ export default async function PropertiesPage({
               key={property.id}
               property={property}
               eager={index < 3}
+              favorited={favoriteIds.has(property.id)}
+              isLoggedIn={Boolean(userId)}
             />
           ))}
         </div>

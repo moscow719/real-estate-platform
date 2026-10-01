@@ -11,6 +11,7 @@
     "home": "Home",
     "properties": "Properties",
     "map": "Map",
+    "favorites": "Favorites",
     "login": "Sign in",
     "register": "Sign up",
     "logout": "Sign out",
@@ -19,6 +20,41 @@
   "Footer": {
     "tagline": "Properties for sale and rent in the finest locations",
     "demo": "All listings and data shown are demo content for showcase purposes only"
+  },
+  "Favorites": {
+    "add": "Add to favorites",
+    "remove": "Remove from favorites",
+    "title": "Favorites",
+    "count": "{count} saved properties",
+    "empty": "No properties in your favorites",
+    "emptyHint": "Tap the heart on any property to save it here.",
+    "browse": "Browse properties"
+  },
+  "Inquiry": {
+    "title": "Contact the owner",
+    "subtitle": "Leave your details and the owner will get back to you",
+    "name": "Name",
+    "phone": "Phone number",
+    "email": "Email (optional)",
+    "message": "Your message",
+    "messagePlaceholder": "I'm interested in this property and would like to view it...",
+    "send": "Send",
+    "sending": "Sending...",
+    "sendAnother": "Send another message",
+    "success": "Your message was sent, the owner will contact you soon",
+    "demoNote": "This is a demo platform, the message will not reach a real owner",
+    "errors": {
+      "name_min": "Name must be at least 2 characters",
+      "name_max": "Name is too long",
+      "phone_invalid": "Invalid phone number",
+      "email_invalid": "Invalid email address",
+      "message_min": "Message must be at least 10 characters",
+      "message_max": "Message is too long",
+      "not_found": "This property is no longer available",
+      "too_many": "You already sent several messages, please try again shortly",
+      "server_error": "Something went wrong, please try again",
+      "invalid": "Invalid data"
+    }
   },
   "Home": {
     "title": "Real Estate Platform",

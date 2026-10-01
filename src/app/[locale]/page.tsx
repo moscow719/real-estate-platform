@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { auth } from "@/auth";
 import { Link } from "@/i18n/navigation";
 import { PropertyCard } from "@/components/property/property-card";
 import { Hero } from "@/components/home/hero";
@@ -7,11 +8,19 @@ import { WhyUs } from "@/components/home/why-us";
 import { HowItWorks } from "@/components/home/how-it-works";
 import { Testimonials } from "@/components/home/testimonials";
 import { CtaBanner } from "@/components/home/cta-banner";
+import { getFavoriteIds } from "@/lib/favorites";
 import { getLatestProperties } from "@/lib/properties";
 
 export default async function HomePage() {
   const t = await getTranslations("Home");
+  const session = await auth();
+  const userId = session?.user?.id;
+
   const latest = await getLatestProperties(6);
+  const favoriteIds = await getFavoriteIds(
+    userId,
+    latest.map((p) => p.id)
+  );
 
   return (
     <main>
@@ -32,7 +41,12 @@ export default async function HomePage() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {latest.map((property) => (
-            <PropertyCard key={property.id} property={property} />
+            <PropertyCard
+              key={property.id}
+              property={property}
+              favorited={favoriteIds.has(property.id)}
+              isLoggedIn={Boolean(userId)}
+            />
           ))}
         </div>
       </section>

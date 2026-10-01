@@ -27,12 +27,20 @@ export async function Navbar() {
           >
             {t("properties")}
           </Link>
-                    <Link
+          <Link
             href="/map"
             className="text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             {t("map")}
           </Link>
+          {session?.user && (
+            <Link
+              href="/dashboard/favorites"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {t("favorites")}
+            </Link>
+          )}
         </div>
 
         <div className="flex items-center gap-2">

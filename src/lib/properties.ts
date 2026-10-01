@@ -5,7 +5,10 @@ import type { SearchFilters } from "@/schemas/search.schema";
 export const PAGE_SIZE = 12;
 
 // Decimal مينفعش يتبعت للمتصفح، فبنحوّله لرقم عادي
-function withNumberPrice<T extends { price: { toNumber(): number } }>(p: T) {
+// النوع بيرجّع price كـ number صراحةً (مش Decimal)
+function withNumberPrice<T extends { price: { toNumber(): number } }>(
+  p: T
+): Omit<T, "price"> & { price: number } {
   return { ...p, price: p.price.toNumber() };
 }
 

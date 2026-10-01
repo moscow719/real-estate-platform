@@ -1,8 +1,12 @@
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
+import { auth } from "@/auth";
 import { Link } from "@/i18n/navigation";
+import { FavoriteButton } from "@/components/property/favorite-button";
+import { InquiryForm } from "@/components/property/inquiry-form";
 import { PropertyGallery } from "@/components/property/property-gallery";
 import { formatNumber, formatPrice } from "@/lib/format";
+import { isFavorite } from "@/lib/favorites";
 import { getPropertyBySlug } from "@/lib/properties";
 
 export default async function PropertyPage({
@@ -16,6 +20,9 @@ export default async function PropertyPage({
 
   const t = await getTranslations("Property");
   const locale = await getLocale();
+  const session = await auth();
+  const userId = session?.user?.id;
+  const favorited = await isFavorite(userId, property.id);
 
   const facts: { label: string; value: string }[] = [
     { label: t("type"), value: t(`types.${property.type}`) },
@@ -84,11 +91,19 @@ export default async function PropertyPage({
           </section>
         </div>
 
-        <aside className="lg:col-span-1">
-          <div className="sticky top-24 space-y-5 rounded-xl border p-6">
-            <span className="inline-block rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white">
-              {t(`purposes.${property.purpose}`)}
-            </span>
+        <aside className="space-y-6 lg:col-span-1">
+          <div className="space-y-5 rounded-xl border p-6">
+            <div className="flex items-center justify-between">
+              <span className="inline-block rounded-full bg-black/70 px-3 py-1 text-xs font-medium text-white">
+                {t(`purposes.${property.purpose}`)}
+              </span>
+              <FavoriteButton
+                propertyId={property.id}
+                initialFavorited={favorited}
+                isLoggedIn={Boolean(userId)}
+                className="border"
+              />
+            </div>
 
             <h1 className="text-xl font-bold leading-8">{property.title}</h1>
 
@@ -122,6 +137,12 @@ export default async function PropertyPage({
               </p>
             )}
           </div>
+
+          <InquiryForm
+            propertyId={property.id}
+            defaultName={session?.user?.name ?? ""}
+            defaultEmail={session?.user?.email ?? ""}
+          />
         </aside>
       </div>
     </main>
