@@ -12,7 +12,8 @@
 - Neon Postgres (Free) - project: real-estate - region: AWS US East 1
 - Auth.js (next-auth@beta) + @auth/prisma-adapter + bcryptjs (Credentials, JWT sessions)
 - @prisma/adapter-pg + pg، Zod، tsx
-- لسه مضافوش: Cloudinary, Leaflet, Google OAuth
+- Leaflet + react-leaflet (خريطة OpenStreetMap)
+- لسه مضافوش: Cloudinary, Google OAuth
 
 ## ملاحظات مهمة (Gotchas)
 - الـ middleware في Next 16 اسمه `src/proxy.ts` (بيجمع next-intl + حماية auth).
@@ -34,21 +35,29 @@
   والسعر بيتقارن بالرقم سواء بيع أو إيجار.
 - الفلاتر بتتعمل بفورم GET عادي (من غير JS على المتصفح)، والترقيم بيحافظ عليها
   (`pageHref` في properties/page.tsx).
+- Leaflet بيستخدم window، فالخريطة بتتحمّل عبر `map-loader.tsx` (dynamic + ssr:false)
+  جوه Client Component. ممنوع تستورد `properties-map.tsx` مباشرة في Server Component.
+- الخريطة مقفولة على حدود مصر، وبتطلب من السيرفر عقارات الحدود الظاهرة بس
+  (حد أقصى 200 عقار، debounce 300ms).
+- بلاطات الخريطة من OpenStreetMap (مجانية، ولازم يفضل اسمهم ظاهر في الـ attribution).
+- فلاتر الخريطة بالنوع والغرض مدعومة في `getPropertiesInBounds` بس مفيش واجهة ليها لسه.
 
 ## الهيكل الحالي
 ```
 src/
-  actions/auth.ts
+  actions/auth.ts, map.ts
   app/
     [locale]/layout.tsx, page.tsx
     [locale]/login/, register/
     [locale]/properties/page.tsx, [slug]/page.tsx
+    [locale]/map/page.tsx
     api/auth/[...nextauth]/route.ts
     globals.css
   components/
     auth/login-form, register-form
     home/hero, features, why-us, how-it-works, testimonials, cta-banner
     layout/navbar, footer, language-switcher
+    map/properties-map, map-loader
     property/property-card, property-gallery
     search/search-filters
     ui/button, card, input, label
@@ -81,9 +90,10 @@ bedrooms/bathrooms اختياريين، indexes. Migration المطبقة: `2026
 - [x] Phase 3: بحث وفلترة بـ URL params (city, type, purpose, minPrice, maxPrice, bedrooms, page).
       الـ Hero بيبعت لنفس الفلاتر. Zod بينضّف المعاملات (src/schemas/search.schema.ts)
       والقيم الغلط بتتجاهل. منشور ومجرَّب على Vercel.
+- [x] Phase 4: خريطة Leaflet (/map): Viewport Filtering (getPropertiesInBounds)،
+      علامات بأسعار، ربط القايمة بالخريطة (hover/click). منشورة ومجرَّبة على Vercel.
 - [ ] Phase 1 (باقي): Skeleton loaders، 404 مخصصة، صفحة خطأ
 - [ ] Phase 2: CRUD + Zod + Cloudinary + Authorization + Status workflow (صفحة /dashboard لسه مش موجودة)
-- [ ] Phase 4: خريطة Leaflet
 - [ ] Phase 5: مفضلة + Dashboard + مشاهدات + Inquiry (اتصل بالمالك)
 - [ ] Phase 6: SEO + حاسبة قسط + مقارنة
 - [ ] Google OAuth (اختياري)
