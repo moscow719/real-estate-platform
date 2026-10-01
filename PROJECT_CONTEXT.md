@@ -41,16 +41,26 @@
   (حد أقصى 200 عقار، debounce 300ms).
 - بلاطات الخريطة من OpenStreetMap (مجانية، ولازم يفضل اسمهم ظاهر في الـ attribution).
 - فلاتر الخريطة بالنوع والغرض مدعومة في `getPropertiesInBounds` بس مفيش واجهة ليها لسه.
+- `withNumberPrice` في properties.ts نوع إرجاعه `Omit<T,"price"> & {price:number}`،
+  عشان `PropertyCardData` يبقى فيه price كرقم (كان Decimal في النوع وبيكسر صفحة المفضلة).
+- الـ Server Actions (ملفات "use server") كل دالة بتتصدّر منها بتبقى قابلة للاستدعاء من
+  المتصفح، فالاستعلامات بتتحط في ملفات عادية (lib/favorites.ts مثلاً) مش جواها.
+- `PropertyCard` فيه الرابط والقلب جنب بعض (مش القلب جوه الرابط).
+- فحص الملفات اللي مساراتها فيها أقواس مربعة: استخدم
+  `Select-String -LiteralPath "src\app\[locale]\..."`. وأي كود بيتلصق في ملف، اتأكد من
+  الملف الصح (حصل مرة إن كود [slug]/page.tsx اتلصق في properties/page.tsx بالغلط).
+- ملفات الترجمة (messages/ar.json و en.json) بتتبعت كاملة تحت بعض عند أي تعديل.
 
 ## الهيكل الحالي
 ```
 src/
-  actions/auth.ts, map.ts
+  actions/auth.ts, map.ts, favorite.ts, inquiry.ts
   app/
     [locale]/layout.tsx, page.tsx
     [locale]/login/, register/
     [locale]/properties/page.tsx, [slug]/page.tsx
     [locale]/map/page.tsx
+    [locale]/dashboard/favorites/page.tsx
     api/auth/[...nextauth]/route.ts
     globals.css
   components/
@@ -58,12 +68,12 @@ src/
     home/hero, features, why-us, how-it-works, testimonials, cta-banner
     layout/navbar, footer, language-switcher
     map/properties-map, map-loader
-    property/property-card, property-gallery
+    property/property-card, property-gallery, favorite-button, inquiry-form
     search/search-filters
     ui/button, card, input, label
   i18n/routing.ts, request.ts, navigation.ts
-  lib/prisma.ts, properties.ts, format.ts, utils.ts
-  schemas/auth.schema.ts, search.schema.ts
+  lib/prisma.ts, properties.ts, favorites.ts, format.ts, utils.ts
+  schemas/auth.schema.ts, search.schema.ts, inquiry.schema.ts
   types/next-auth.d.ts
   auth.ts, proxy.ts
 public/images/hero.jpg, why-us.jpg, cta.jpg
@@ -84,18 +94,19 @@ bedrooms/bathrooms اختياريين، indexes. Migration المطبقة: `2026
 
 ## الحالة
 - [x] Phase 0: مشروع، shadcn، i18n/RTL، Prisma+Neon، Auth.js، حماية /dashboard و/admin، GitHub، Vercel
-- [x] Login / Register شغالين (تجربة كاملة محلياً)
+- [x] Login / Register شغالين
 - [x] Seed: 50 عقار بمناطق فاخرة
 - [x] Phase 1: الرئيسية (بتصميم Nestoria)، قائمة العقارات بترقيم، تفاصيل العقار بمعرض صور، Navbar/Footer
-- [x] Phase 3: بحث وفلترة بـ URL params (city, type, purpose, minPrice, maxPrice, bedrooms, page).
-      الـ Hero بيبعت لنفس الفلاتر. Zod بينضّف المعاملات (src/schemas/search.schema.ts)
-      والقيم الغلط بتتجاهل. منشور ومجرَّب على Vercel.
-- [x] Phase 4: خريطة Leaflet (/map): Viewport Filtering (getPropertiesInBounds)،
-      علامات بأسعار، ربط القايمة بالخريطة (hover/click). منشورة ومجرَّبة على Vercel.
+- [x] Phase 3: بحث وفلترة بـ URL params (city, type, purpose, minPrice, maxPrice, bedrooms, page)
+- [x] Phase 4: خريطة Leaflet (/map) مع Viewport Filtering وربط القايمة بالخريطة
+- [x] Phase 5: المفضلة (toggleFavorite، قلب في الكروت والتفاصيل، صفحة /dashboard/favorites،
+      رابط في الـ Navbar للمسجّلين) + فورم "تواصل مع المالك" (sendInquiry، حد 3 رسايل/ساعة
+      لنفس الهاتف على نفس العقار، بيربط بالحساب من الـ session). منشورة ومجرَّبة على Vercel.
 - [ ] Phase 1 (باقي): Skeleton loaders، 404 مخصصة، صفحة خطأ
-- [ ] Phase 2: CRUD + Zod + Cloudinary + Authorization + Status workflow (صفحة /dashboard لسه مش موجودة)
-- [ ] Phase 5: مفضلة + Dashboard + مشاهدات + Inquiry (اتصل بالمالك)
-- [ ] Phase 6: SEO + حاسبة قسط + مقارنة
+- [ ] Phase 2: CRUD + Zod + Cloudinary + Authorization + Status workflow
+      (لسه مفيش /dashboard رئيسية ولا فورم إضافة عقار)
+- [ ] Phase 5 (باقي): PropertyView (تسجيل المشاهدات)، صفحة لمالك العقار يشوف رسايل التواصل
+- [ ] Phase 6: SEO (metadata/OpenGraph/sitemap) + حاسبة قسط + مقارنة
 - [ ] Google OAuth (اختياري)
 - [ ] صفحة /admin
 
