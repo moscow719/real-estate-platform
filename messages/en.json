@@ -1,7 +1,16 @@
 {
+  "Map": {
+    "title": "Map",
+    "count": "{count} properties in this area",
+    "loading": "Loading...",
+    "empty": "No properties in this area, try moving or zooming the map",
+    "perMonth": "/ month",
+    "viewDetails": "View details"
+  },
   "Nav": {
     "home": "Home",
     "properties": "Properties",
+    "map": "Map",
     "login": "Sign in",
     "register": "Sign up",
     "logout": "Sign out",
