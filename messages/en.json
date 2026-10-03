@@ -1,4 +1,16 @@
 {
+  "NotFound": {
+    "title": "Page not found",
+    "text": "Sorry, the page you are looking for doesn't exist or has been moved.",
+    "home": "Back to home",
+    "browse": "Browse properties"
+  },
+  "Error": {
+    "title": "Something went wrong",
+    "text": "We couldn't load this page. Please try again.",
+    "retry": "Try again",
+    "home": "Back to home"
+  },
   "Map": {
     "title": "Map",
     "count": "{count} properties in this area",
