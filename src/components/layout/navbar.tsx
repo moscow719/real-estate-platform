@@ -34,12 +34,20 @@ export async function Navbar() {
             {t("map")}
           </Link>
           {session?.user && (
-            <Link
-              href="/dashboard/favorites"
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {t("favorites")}
-            </Link>
+            <>
+              <Link
+                href="/dashboard/properties"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {t("myProperties")}
+              </Link>
+              <Link
+                href="/dashboard/favorites"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {t("favorites")}
+              </Link>
+            </>
           )}
         </div>
 
