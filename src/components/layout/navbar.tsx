@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
 import { auth, signOut } from "@/auth";
 import { Link } from "@/i18n/navigation";
@@ -17,18 +16,10 @@ export async function Navbar() {
 
   return (
     <header className="sticky top-0 z-40 border-b bg-background/90 backdrop-blur">
-      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4">
+      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <div className="flex items-center gap-6">
-          <Link href="/" className="shrink-0">
-            <Image
-              src="/images/melk-logo.png"
-              alt={t("brand")}
-              width={1024}
-              height={682}
-              sizes="(min-width: 640px) 96px, 84px"
-              preload
-              className="h-14 w-auto object-contain sm:h-16"
-            />
+          <Link href="/" className="text-lg font-bold">
+            <span dir="ltr">{t("brand")}</span>
           </Link>
           <Link
             href="/properties"
