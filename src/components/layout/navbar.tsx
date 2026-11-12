@@ -19,7 +19,7 @@ export async function Navbar() {
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4">
         <div className="flex items-center gap-6">
           <Link href="/" className="text-lg font-bold">
-            {t("home")}
+            <span dir="ltr">{t("brand")}</span>
           </Link>
           <Link
             href="/properties"

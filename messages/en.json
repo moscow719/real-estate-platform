@@ -12,7 +12,7 @@
     "home": "Back to home"
   },
   "SEO": {
-    "siteName": "Real Estate Platform",
+    "siteName": "MELK | مِلك",
     "siteDescription": "Discover properties for sale and rent across Egypt.",
     "homeTitle": "Properties for Sale and Rent in Egypt",
     "homeDescription": "Explore handpicked properties for sale and rent in Egypt's finest locations and find a space that fits your needs.",
@@ -32,6 +32,7 @@
   },
   "Nav": {
     "home": "Home",
+    "brand": "MELK | مِلك",
     "properties": "Properties",
     "map": "Map",
     "compare": "Compare",
@@ -231,7 +232,7 @@
     "emptyHint": "Inquiries about your properties will appear here."
   },
   "Home": {
-    "title": "Real Estate Platform",
+    "title": "MELK | مِلك",
     "subtitle": "Find your dream home",
     "latestTitle": "Latest properties",
     "viewAll": "View all properties",
