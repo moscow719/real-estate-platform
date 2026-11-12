@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { CompareButton } from "@/components/property/compare-button";
 import { FavoriteButton } from "@/components/property/favorite-button";
 import { formatNumber, formatPrice } from "@/lib/format";
 import type { PropertyCardData } from "@/lib/properties";
@@ -82,6 +83,11 @@ export function PropertyCard({
         initialFavorited={favorited}
         isLoggedIn={isLoggedIn}
         className="absolute end-3 top-3"
+      />
+      <CompareButton
+        propertyId={property.id}
+        compact
+        className="absolute end-3 top-14"
       />
     </div>
   );

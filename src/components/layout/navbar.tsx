@@ -33,13 +33,33 @@ export async function Navbar() {
           >
             {t("map")}
           </Link>
+          <Link
+            href="/compare"
+            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {t("compare")}
+          </Link>
           {session?.user && (
             <>
+              {session.user.role === "ADMIN" && (
+                <Link
+                  href="/admin"
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {t("admin")}
+                </Link>
+              )}
               <Link
                 href="/dashboard/properties"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 {t("myProperties")}
+              </Link>
+              <Link
+                href="/dashboard/inquiries"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {t("inquiries")}
               </Link>
               <Link
                 href="/dashboard/favorites"

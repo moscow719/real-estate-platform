@@ -40,6 +40,13 @@ enum Currency {
   USD
 }
 
+enum ComparisonSlot {
+  FIRST
+  SECOND
+  THIRD
+  FOURTH
+}
+
 // ---------- Auth.js ----------
 model User {
   id            String         @id @default(cuid())
@@ -57,6 +64,7 @@ model User {
   favorites     Favorite[]
   views         PropertyView[]
   inquiries     Inquiry[]
+  comparisons   PropertyComparison[]
 }
 
 model Account {
@@ -118,6 +126,7 @@ model Property {
   views       PropertyView[]
   favorites   Favorite[]
   inquiries   Inquiry[]
+  comparisons PropertyComparison[]
   createdAt   DateTime        @default(now())
   updatedAt   DateTime        @updatedAt
 
@@ -177,4 +186,17 @@ model Inquiry {
   user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([propertyId])
+}
+
+model PropertyComparison {
+  id         String         @id @default(cuid())
+  userId     String
+  propertyId String
+  slot       ComparisonSlot
+  createdAt  DateTime       @default(now())
+  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  property   Property       @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, propertyId])
+  @@unique([userId, slot])
 }

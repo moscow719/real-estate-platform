@@ -6,7 +6,10 @@ export async function getMyProperties(userId: string) {
   const rows = await prisma.property.findMany({
     where: { ownerId: userId },
     orderBy: { updatedAt: "desc" },
-    include: { images: { orderBy: { sortOrder: "asc" }, take: 1 } },
+    include: {
+      images: { orderBy: { sortOrder: "asc" }, take: 1 },
+      _count: { select: { views: true } },
+    },
   });
   return rows.map((p) => ({ ...p, price: p.price.toNumber() }));
 }

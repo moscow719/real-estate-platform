@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { createLocalizedMetadata } from "@/lib/seo";
 import { auth } from "@/auth";
 import { Link } from "@/i18n/navigation";
 import { PropertyCard } from "@/components/property/property-card";
@@ -10,6 +11,23 @@ import { Testimonials } from "@/components/home/testimonials";
 import { CtaBanner } from "@/components/home/cta-banner";
 import { getFavoriteIds } from "@/lib/favorites";
 import { getLatestProperties } from "@/lib/properties";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "SEO" });
+
+  return createLocalizedMetadata({
+    locale,
+    siteName: t("siteName"),
+    title: t("homeTitle"),
+    description: t("homeDescription"),
+    pathname: "/",
+  });
+}
 
 export default async function HomePage() {
   const t = await getTranslations("Home");

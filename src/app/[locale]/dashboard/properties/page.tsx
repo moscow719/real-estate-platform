@@ -109,6 +109,9 @@ export default async function MyPropertiesPage() {
                       </span>
                     )}
                   </p>
+                  <p className="text-sm text-muted-foreground">
+                    {t("viewCount", { count: p._count.views })}
+                  </p>
 
                   {locked ? (
                     <p className="text-xs text-muted-foreground">

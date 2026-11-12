@@ -11,6 +11,17 @@
     "retry": "Try again",
     "home": "Back to home"
   },
+  "SEO": {
+    "siteName": "Real Estate Platform",
+    "siteDescription": "Discover properties for sale and rent across Egypt.",
+    "homeTitle": "Properties for Sale and Rent in Egypt",
+    "homeDescription": "Explore handpicked properties for sale and rent in Egypt's finest locations and find a space that fits your needs.",
+    "propertiesTitle": "Browse Properties",
+    "propertiesDescription": "Search properties for sale and rent by location, type, and price.",
+    "mapTitle": "Property Map",
+    "mapDescription": "Explore available properties for sale and rent on the map.",
+    "propertyTitle": "{title} in {city}"
+  },
   "Map": {
     "title": "Map",
     "count": "{count} properties in this area",
@@ -23,8 +34,11 @@
     "home": "Home",
     "properties": "Properties",
     "map": "Map",
+    "compare": "Compare",
     "favorites": "Favorites",
     "myProperties": "My properties",
+    "inquiries": "Property inquiries",
+    "admin": "Admin",
     "login": "Sign in",
     "register": "Sign up",
     "logout": "Sign out",
@@ -43,6 +57,38 @@
     "emptyHint": "Tap the heart on any property to save it here.",
     "browse": "Browse properties"
   },
+  "Comparison": {
+    "title": "Compare properties",
+    "description": "Compare up to four properties side by side.",
+    "add": "Add to comparison",
+    "remove": "Remove from comparison",
+    "removeProperty": "Remove property",
+    "empty": "Choose properties to compare from the property listings.",
+    "browse": "Browse properties",
+    "loading": "Loading comparison...",
+    "loadError": "Couldn't load the comparison list. Please try again.",
+    "pending": "{count} guest-selected properties are waiting for an open slot. Remove a saved property to add them.",
+    "loginPrompt": "Your guest list will be saved to your account after you sign in.",
+    "errors": {
+      "unauthorized": "Please sign in to save your comparison list.",
+      "invalid": "The comparison list is invalid.",
+      "not_found": "This property is no longer available.",
+      "limit": "You can compare up to four properties.",
+      "conflict": "The list changed elsewhere. Please try again.",
+      "failed": "Couldn't update the comparison list. Please try again.",
+      "storage": "Your browser couldn't save the guest comparison list."
+    },
+    "fields": {
+      "price": "Price",
+      "purpose": "Purpose",
+      "type": "Type",
+      "city": "City",
+      "address": "Address",
+      "area": "Area",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms"
+    }
+  },
   "Dashboard": {
     "title": "My properties",
     "count": "{count} properties",
@@ -54,6 +100,7 @@
     "edit": "Edit",
     "delete": "Delete",
     "view": "View",
+    "viewCount": "{count} views",
     "confirmDelete": "Are you sure you want to delete this property? This can't be undone.",
     "cancel": "Cancel",
     "confirm": "Yes, delete",
@@ -72,6 +119,25 @@
       "unauthorized": "Please sign in first",
       "forbidden": "You don't have permission to do this",
       "not_found": "Property not found",
+      "server_error": "Something went wrong, please try again"
+    }
+  },
+  "Admin": {
+    "title": "Property review",
+    "count": "{count} properties awaiting review",
+    "empty": "No properties are awaiting review",
+    "owner": "Owner",
+    "area": "Area: {area} m²",
+    "bedrooms": "{count} bedrooms",
+    "bathrooms": "{count} bathrooms",
+    "approve": "Approve and publish",
+    "reject": "Reject",
+    "working": "Processing...",
+    "errors": {
+      "unauthorized": "Please sign in first",
+      "forbidden": "You don't have permission to do this",
+      "invalid": "Invalid request",
+      "not_pending": "This property is no longer awaiting review",
       "server_error": "Something went wrong, please try again"
     }
   },
@@ -144,7 +210,7 @@
     "sending": "Sending...",
     "sendAnother": "Send another message",
     "success": "Your message was sent, the owner will contact you soon",
-    "demoNote": "This is a demo platform, the message will not reach a real owner",
+    "demoNote": "This is a demo platform. Your inquiry will appear in the property's owner's dashboard.",
     "errors": {
       "name_min": "Name must be at least 2 characters",
       "name_max": "Name is too long",
@@ -157,6 +223,12 @@
       "server_error": "Something went wrong, please try again",
       "invalid": "Invalid data"
     }
+  },
+  "Inquiries": {
+    "title": "Property inquiries",
+    "count": "{count} messages",
+    "empty": "No inquiries yet",
+    "emptyHint": "Inquiries about your properties will appear here."
   },
   "Home": {
     "title": "Real Estate Platform",
@@ -267,6 +339,20 @@
     "type": "Type",
     "purpose": "Purpose",
     "noImage": "No image"
+  },
+  "MortgageCalculator": {
+    "title": "Estimated mortgage payment",
+    "description": "Enter a down payment, annual interest rate, and loan term.",
+    "downPayment": "Down payment",
+    "annualRate": "Annual interest rate (%)",
+    "termYears": "Loan term (years)",
+    "loanAmount": "Loan amount",
+    "monthlyPayment": "Estimated monthly payment",
+    "totalPayment": "Total payments",
+    "totalInterest": "Estimated total interest",
+    "enterValues": "Enter an interest rate to see the estimate.",
+    "invalidValues": "Check the values: down payment must be below the price, interest must be 0–100%, and the term must be 1–40 years.",
+    "disclaimer": "Illustrative estimate assuming a fixed annual rate; fees and taxes are excluded. This is not a financing offer."
   },
   "Auth": {
     "loginTitle": "Sign in",

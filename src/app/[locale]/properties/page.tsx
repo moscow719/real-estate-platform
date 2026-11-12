@@ -1,13 +1,40 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { auth } from "@/auth";
 import { Link } from "@/i18n/navigation";
 import { PropertyCard } from "@/components/property/property-card";
 import { SearchFilters } from "@/components/search/search-filters";
+import { createLocalizedMetadata } from "@/lib/seo";
 import { getFavoriteIds } from "@/lib/favorites";
 import { getCities, getProperties } from "@/lib/properties";
 import { parseSearchParams } from "@/schemas/search.schema";
 
 type RawParams = Record<string, string | string[] | undefined>;
+
+export async function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<RawParams>;
+}): Promise<Metadata> {
+  const [{ locale }, query] = await Promise.all([params, searchParams]);
+  const t = await getTranslations({ locale, namespace: "SEO" });
+  const metadata = createLocalizedMetadata({
+    locale,
+    siteName: t("siteName"),
+    title: t("propertiesTitle"),
+    description: t("propertiesDescription"),
+    pathname: "/properties",
+  });
+  const hasQuery = Object.values(query).some((value) =>
+    Array.isArray(value) ? value.some(Boolean) : Boolean(value)
+  );
+
+  return hasQuery
+    ? { ...metadata, robots: { index: false, follow: true } }
+    : metadata;
+}
 
 // بيبني رابط الصفحة المطلوبة مع الحفاظ على الفلاتر الحالية
 function pageHref(filters: Record<string, unknown>, page: number) {

@@ -24,6 +24,7 @@
 - alias: `@/*` -> `./src/*`
 - `.env` فيه: DATABASE_URL (pooled) + AUTH_SECRET. ممنوع يترفع على Git.
 - على Vercel (Production): DATABASE_URL + AUTH_SECRET (قيمة مختلفة عن المحلي).
+- SEO يستخدم `NEXT_PUBLIC_SITE_URL` كعنوان أساسي (origin فقط)، مع fallback إلى عنوان Vercel أو localhost.
 - ملفات AI agents (.claude, .cursor...) في .gitignore.
 - لو `tsc --noEmit` طلّع أخطاء في `.next/...validator.ts` يبقى كاش قديم أو السيرفر شغال:
   امسح `.next` وأعد الفحص. (مسح `.next` بيخلي أول تشغيل بطيء، فمتمسحهوش إلا للضرورة.)
@@ -102,13 +103,15 @@ bedrooms/bathrooms اختياريين، indexes. Migration المطبقة: `2026
 - [x] Phase 5: المفضلة (toggleFavorite، قلب في الكروت والتفاصيل، صفحة /dashboard/favorites،
       رابط في الـ Navbar للمسجّلين) + فورم "تواصل مع المالك" (sendInquiry، حد 3 رسايل/ساعة
       لنفس الهاتف على نفس العقار، بيربط بالحساب من الـ session). منشورة ومجرَّبة على Vercel.
-- [ ] Phase 1 (باقي): Skeleton loaders، 404 مخصصة، صفحة خطأ
-- [ ] Phase 2: CRUD + Zod + Cloudinary + Authorization + Status workflow
-      (لسه مفيش /dashboard رئيسية ولا فورم إضافة عقار)
-- [ ] Phase 5 (باقي): PropertyView (تسجيل المشاهدات)، صفحة لمالك العقار يشوف رسايل التواصل
-- [ ] Phase 6: SEO (metadata/OpenGraph/sitemap) + حاسبة قسط + مقارنة
+- [x] Phase 1: Skeleton loaders، 404 مخصصة، صفحة خطأ
+- [x] Phase 2: CRUD + Zod + Cloudinary + Authorization + Status workflow
+      (إضافة/تعديل/حذف العقارات، رفع الصور، ولوحة أدمن لقبول أو رفض العقارات المعلّقة)
+- [x] Phase 5: PropertyView بتسجيل مرة لكل جلسة/عقار/يوم، وعرض إجمالي المشاهدات للمالك
+      (رسائل التواصل تظهر للمالك في /dashboard/inquiries)
+- [x] Phase 6: metadata محلية، Open Graph، canonical/hreflang، sitemap وrobots
+- [x] Phase 6: حاسبة قسط تقديرية للعقارات المعروضة للبيع
+- [ ] Phase 6 (باقي): مقارنة العقارات
 - [ ] Google OAuth (اختياري)
-- [ ] صفحة /admin
 
 ## TODO أمني
 - رابط قاعدة البيانات اتبعت في محادثة قبل كده. يفضل عمل Reset password من Neon
